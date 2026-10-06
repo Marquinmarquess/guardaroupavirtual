@@ -43,8 +43,14 @@ src="https://www.facebook.com/tr?id=1760256491928406&ev=PageView&noscript=1"
   .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);}
   .reveal.in{opacity:1;transform:none;}
 
-  .cta{display:inline-flex;align-items:center;gap:14px;background:var(--ink);color:var(--paper);padding:21px 38px;font-size:14px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;text-decoration:none;border:none;cursor:pointer;transition:transform .35s cubic-bezier(.2,.7,.2,1),background .35s;position:relative;}
-  .cta:hover{transform:translateY(-3px);background:var(--camel-deep);}
+  .cta{display:inline-flex;align-items:center;justify-content:center;gap:13px;background:linear-gradient(135deg,#c79a6d 0%,var(--camel) 45%,var(--camel-deep) 100%);color:#fff;padding:23px 46px;font-size:15px;letter-spacing:.15em;text-transform:uppercase;font-weight:600;text-decoration:none;border:none;cursor:pointer;border-radius:60px;position:relative;overflow:hidden;box-shadow:0 12px 32px -8px rgba(141,111,79,.62),0 2px 8px rgba(0,0,0,.14);transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s;animation:ctaBreath 2.8s ease-in-out infinite;will-change:transform;}
+  .cta::before{content:"";position:absolute;top:0;left:-130%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-18deg);animation:ctaShine 3.6s ease-in-out infinite;pointer-events:none;}
+  .cta:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 20px 46px -8px rgba(141,111,79,.78),0 4px 14px rgba(0,0,0,.2);animation-play-state:paused;}
+  .cta .arrow{transition:transform .3s;font-size:1.15em;}
+  .cta:hover .arrow{transform:translateX(7px);}
+  @keyframes ctaBreath{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-2px) scale(1.015);}}
+  @keyframes ctaShine{0%{left:-130%;}58%,100%{left:150%;}}
+  @media(max-width:640px){.cta{width:100%;padding:22px 24px;font-size:14px;}}
   .cta .arrow{transition:transform .35s;}
   .cta:hover .arrow{transform:translateX(6px);}
 
@@ -388,6 +394,115 @@ src="https://www.facebook.com/tr?id=1760256491928406&ev=PageView&noscript=1"
     </div>
   </div>
 </section>
+
+<!-- ===================== DEMO INTERATIVA NOTION ===================== -->
+<style>
+  .gvd{background:linear-gradient(180deg,var(--cream) 0%,var(--cream-deep) 100%);}
+  .gvd .section-eyebrow{justify-content:center}
+  .gvd-head{text-align:center;max-width:640px;margin:0 auto 40px}
+  .gvd-win{max-width:860px;margin:0 auto;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 30px 70px -24px rgba(60,48,34,.38),0 4px 14px rgba(0,0,0,.06);border:1px solid var(--line)}
+  .gvd-bar{display:flex;align-items:center;gap:9px;padding:14px 18px;background:#faf8f5;border-bottom:1px solid var(--line)}
+  .gvd-bar i{width:11px;height:11px;border-radius:50%;background:#e4ddd2;display:block}
+  .gvd-bar .crumb{margin-left:12px;font-size:12px;color:var(--muted);letter-spacing:.02em}
+  .gvd-tabs{display:flex;gap:9px;flex-wrap:wrap;padding:18px 20px 6px}
+  .gvd-tab{display:inline-flex;align-items:center;gap:7px;padding:11px 17px;border-radius:40px;border:1px solid var(--line);background:#fff;color:var(--soft-ink);font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:all .25s;white-space:nowrap}
+  .gvd-tab:hover{border-color:var(--camel);transform:translateY(-1px)}
+  .gvd-tab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .gvd-hint{text-align:center;font-size:12.5px;color:var(--camel-deep);margin:4px 0 0;font-weight:500}
+  .gvd-hint .pt{display:inline-block;animation:gvdpt 1.5s infinite}
+  @keyframes gvdpt{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+  .gvd-stage{padding:10px 20px 26px}
+  .gvd-look{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;margin:8px 0 18px;border-radius:12px;background:linear-gradient(120deg,var(--cream),#fff);border:1px solid var(--line)}
+  .gvd-look h4{font-family:'Bodoni Moda',serif;font-size:20px;color:var(--ink);line-height:1.15}
+  .gvd-look .emo{font-size:30px;line-height:1}
+  .gvd-look .tot{font-size:12px;color:var(--muted);margin-top:2px}
+  .gvd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .gvd-card{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;display:flex;flex-direction:column;opacity:0;transform:translateY(10px);animation:gvdin .5s forwards}
+  .gvd-card .ph{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;font-size:34px;background:linear-gradient(135deg,#f2ece2,#e7dfd2)}
+  .gvd-card .inf{padding:11px 12px 13px}
+  .gvd-card .nm{font-size:13px;font-weight:600;color:var(--ink);line-height:1.25;min-height:32px}
+  .gvd-card .mt{display:flex;align-items:center;justify-content:space-between;margin-top:7px}
+  .gvd-card .loja{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--cream);padding:3px 8px;border-radius:20px}
+  .gvd-card .pr{font-size:13px;font-weight:700;color:var(--camel-deep)}
+  .gvd-card .buy{margin:0 12px 12px;text-align:center;padding:9px;border-radius:30px;background:var(--ink);color:#fff;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;cursor:pointer;transition:background .25s;display:flex;align-items:center;justify-content:center;gap:6px}
+  .gvd-card .buy:hover{background:var(--camel-deep)}
+  @keyframes gvdin{to{opacity:1;transform:translateY(0)}}
+  .gvd-cta-wrap{text-align:center;margin-top:34px}
+  .gvd-note{font-size:12px;color:var(--muted);margin-top:14px}
+  @media(max-width:720px){.gvd-grid{grid-template-columns:repeat(2,1fr)}.gvd-win{border-radius:14px}}
+</style>
+<section class="gvd">
+  <div class="wrap">
+    <div class="gvd-head reveal">
+      <div class="section-eyebrow"><span class="rule" style="background:var(--camel)"></span><span class="eyebrow" style="color:var(--camel-deep)">Veja por dentro</span><span class="rule" style="background:var(--camel)"></span></div>
+      <h2 class="h2">É só tocar na ocasião<br>e o <em>look aparece.</em></h2>
+      <p class="lead">Experimente agora — exatamente como funciona no seu celular depois da compra.</p>
+    </div>
+    <div class="gvd-win reveal">
+      <div class="gvd-bar"><i></i><i></i><i></i><span class="crumb">Guarda-Roupa Virtual&nbsp;&nbsp;/&nbsp;&nbsp;Looks por ocasião</span></div>
+      <div class="gvd-tabs" id="gvdTabs"></div>
+      <p class="gvd-hint"><span class="pt">👆</span> toque em uma ocasião</p>
+      <div class="gvd-stage">
+        <div class="gvd-look" id="gvdLook"></div>
+        <div class="gvd-grid" id="gvdGrid"></div>
+      </div>
+    </div>
+    <div class="gvd-cta-wrap reveal">
+      <a href="https://pay.kiwify.com.br/OO9G4bS" class="cta">Quero isso no meu celular <span class="arrow">→</span></a>
+      <p class="gvd-note">🔒 Acesso imediato · vitalício · do PP ao plus size</p>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  const D={
+    cafe:{t:"☕ Café",look:"Look café da tarde",emo:"☕",pe:[
+      {e:"👚",n:"Camisa listrada azul",l:"Shein",p:"59"},
+      {e:"🩳",n:"Bermuda alfaiataria bege",l:"Renner",p:"129"},
+      {e:"👜",n:"Bolsa couro preta",l:"Amazon",p:"89"},
+      {e:"🥿",n:"Sapatilha bege",l:"Shein",p:"79"}]},
+    trab:{t:"💼 Trabalho",look:"Look trabalho elegante",emo:"💼",pe:[
+      {e:"🧥",n:"Blazer preto estruturado",l:"Renner",p:"199"},
+      {e:"👖",n:"Calça de alfaiataria",l:"Amaro",p:"159"},
+      {e:"👔",n:"Camisa branca",l:"C&A",p:"79"},
+      {e:"👠",n:"Scarpin nude",l:"Shein",p:"99"}]},
+    jantar:{t:"🍷 Jantar",look:"Look jantar / restaurante",emo:"🍷",pe:[
+      {e:"✨",n:"Cropped acetinado",l:"Shein",p:"69"},
+      {e:"👗",n:"Saia midi fluida",l:"Renner",p:"139"},
+      {e:"👠",n:"Salto fino preto",l:"Amaro",p:"149"},
+      {e:"👛",n:"Clutch pequena",l:"Shein",p:"59"}]},
+    cinema:{t:"🎬 Cinema",look:"Look cinema confortável",emo:"🎬",pe:[
+      {e:"🧥",n:"Jaqueta jeans",l:"Renner",p:"159"},
+      {e:"👖",n:"Calça wide confortável",l:"Renner",p:"129"},
+      {e:"👟",n:"Tênis branco",l:"Shein",p:"109"},
+      {e:"👜",n:"Bolsa transversal",l:"Amazon",p:"79"}]},
+    festa:{t:"✨ Festa",look:"Look festa & evento",emo:"✨",pe:[
+      {e:"👗",n:"Vestido cetim",l:"Amaro",p:"249"},
+      {e:"👡",n:"Sandália de tiras",l:"Shein",p:"89"},
+      {e:"💎",n:"Maxi brinco",l:"Shein",p:"29"},
+      {e:"👛",n:"Clutch com brilho",l:"Shein",p:"69"}]},
+    date:{t:"❤️ Date",look:"Look date noturno",emo:"❤️",pe:[
+      {e:"👚",n:"Blusa decote V",l:"Shein",p:"49"},
+      {e:"👖",n:"Calça flare",l:"Renner",p:"139"},
+      {e:"🥿",n:"Mule nude",l:"Amaro",p:"129"},
+      {e:"👜",n:"Bolsa baguete",l:"Shein",p:"59"}]}
+  };
+  const tabs=document.getElementById('gvdTabs'),grid=document.getElementById('gvdGrid'),look=document.getElementById('gvdLook');
+  if(!tabs)return;
+  const keys=Object.keys(D);
+  keys.forEach(k=>{const b=document.createElement('button');b.className='gvd-tab';b.textContent=D[k].t;b.dataset.k=k;tabs.appendChild(b);});
+  function render(k){
+    const d=D[k];
+    [...tabs.children].forEach(b=>b.classList.toggle('on',b.dataset.k===k));
+    const tot=d.pe.reduce((s,p)=>s+Number(p.p),0);
+    look.innerHTML='<div style="display:flex;align-items:center;gap:14px"><span class="emo">'+d.emo+'</span><div><h4>'+d.look+'</h4><div class="tot">'+d.pe.length+' peças · look completo ~ R$ '+tot+'</div></div></div><div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--camel-deep);font-weight:600">Montado ✓</div>';
+    grid.innerHTML=d.pe.map((p,i)=>'<div class="gvd-card" style="animation-delay:'+(i*70)+'ms"><div class="ph">'+p.e+'</div><div class="inf"><div class="nm">'+p.n+'</div><div class="mt"><span class="loja">'+p.l+'</span><span class="pr">R$ '+p.p+'</span></div></div><div class="buy">Comprar peça <span>→</span></div></div>').join('');
+  }
+  tabs.addEventListener('click',e=>{const b=e.target.closest('.gvd-tab');if(b)render(b.dataset.k);});
+  grid.addEventListener('click',e=>{if(e.target.closest('.buy')){const w=document.querySelector('.gvd-win');w.style.transition='transform .15s';w.style.transform='scale(.995)';setTimeout(()=>w.style.transform='',150);}});
+  render('cafe');
+})();
+</script>
 
 <!-- ===================== OCCASIONS ===================== -->
 <section>
